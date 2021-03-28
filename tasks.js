@@ -37,7 +37,7 @@ function startApp(name){
 
 function onDataReceived(text) {
   text= text.replace('\n','').trim();
-  var arrText = text.split(' ');
+  var arrayText = text.split(' ');
 
   if (text.trim() === 'quit' || text.trim() === 'exit') {
     quit();
@@ -78,14 +78,12 @@ function hello(){
 
 function hello(text){
   if (text) {
-    console.log("hello" + " " +text+'!')
+    console.log("hello" + " " +text+ "!");
   }
     else{
-      console.log('hello!')
+      console.log("hello!");
     }
   }
-
-
 
 /**
  * this function is made to print all the existing commands.
