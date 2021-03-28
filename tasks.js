@@ -69,7 +69,11 @@ function unknownCommand(c){
 function hello(){
   console.log('hello!')
 }
-
+/**
+ * this function is made to print all the existing commands.
+ *
+ * @returns {void}
+ */
 function listOfCommands(){
 console.log("1- hello");
 console.log("2- quit");
