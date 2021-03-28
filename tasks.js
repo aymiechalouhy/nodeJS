@@ -34,12 +34,15 @@ function startApp(name){
  * @returns {void}
  */
 function onDataReceived(text) {
-  if (text.trim() === 'quit') {
+  if (text.trim() === 'quit' || text.trim() === 'exit') {
     quit();
   }
   else if(text.trim() === 'hello'){
     hello();
-  }
+  }/*
+  else  if(text.trim() === 'exit'){
+    quit();
+}*/
   else{
     unknownCommand(text);
   }
@@ -77,6 +80,13 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
+
+
+function exit(){
+  console.log('Quitting now, goodbye!')
+  process.exit();
+}
+
 
 // The following line starts the application
 startApp("Aymie Chalouhy")
