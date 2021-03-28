@@ -71,6 +71,7 @@ function hello(){
 }
 /**
  * this function is made to print all the existing commands.
+ * It works when you type help.
  *
  * @returns {void}
  */
