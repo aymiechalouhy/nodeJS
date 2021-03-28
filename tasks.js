@@ -92,11 +92,13 @@ function hello(text){
  * @returns {void}
  */
 function listOfCommands(){
-console.log("1- hello");
-console.log("2- quit");
-console.log("3- exit");
+  console.log('\n  Below are the possible commands: \n', '\n', 
+   '1- help:Show the available commands\n\n',
+   '2- hello: Show hello message\n\n',
+   '3- hello and type any name: Show hello message and the name you have entered\n\n',
+   '4- quit/exit: Quit the application\n\n',
+  );
 }
-
 
 /**
  * Exits the application
