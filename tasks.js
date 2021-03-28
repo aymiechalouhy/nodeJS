@@ -73,7 +73,7 @@ function hello(){
 function listOfCommands(){
 console.log("1- hello");
 console.log("2- quit");
-console.log("1- exit");
+console.log("3- exit");
 }
 
 
