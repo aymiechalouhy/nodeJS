@@ -33,7 +33,12 @@ function startApp(name){
  * @param  {string} text data typed by the user
  * @returns {void}
  */
+
+
 function onDataReceived(text) {
+  text= text.replace('\n','').trim();
+  var arrText = text.split(' ');
+
   if (text.trim() === 'quit' || text.trim() === 'exit') {
     quit();
   }
@@ -48,7 +53,7 @@ function onDataReceived(text) {
   }
 }
 
-
+ 
 /**
  * prints "unknown command"
  * This function is supposed to run when all other commands have failed
@@ -66,9 +71,22 @@ function unknownCommand(c){
  *
  * @returns {void}
  */
+
 function hello(){
   console.log('hello!')
 }
+
+function hello(text){
+  if (text) {
+    console.log("hello" + " " +text+'!')
+  }
+    else{
+      console.log('hello!')
+    }
+  }
+
+
+
 /**
  * this function is made to print all the existing commands.
  * It works when you type help.
