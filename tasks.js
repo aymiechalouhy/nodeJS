@@ -39,10 +39,10 @@ function onDataReceived(text) {
   }
   else if(text.trim() === 'hello'){
     hello();
-  }/*
-  else  if(text.trim() === 'exit'){
-    quit();
-}*/
+  }
+  else  if(text.trim() === 'help'){
+    listOfCommands();
+}
   else{
     unknownCommand(text);
   }
@@ -70,6 +70,12 @@ function hello(){
   console.log('hello!')
 }
 
+function listOfCommands(){
+console.log("1- hello");
+console.log("2- quit");
+console.log("1- exit");
+}
+
 
 /**
  * Exits the application
@@ -80,13 +86,10 @@ function quit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
-
-
 function exit(){
   console.log('Quitting now, goodbye!')
   process.exit();
 }
-
 
 // The following line starts the application
 startApp("Aymie Chalouhy")
