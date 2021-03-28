@@ -39,17 +39,21 @@ function onDataReceived(text) {
   text= text.replace('\n','').trim();
   var arrayText = text.split(' ');
 
-  if (text.trim() === 'quit' || text.trim() === 'exit') {
+  if (arrayText[0] === 'quit' || arrayText[0] === 'exit') {
     quit();
   }
-  else if(text.trim() === 'hello'){
+  else if(arrayText[0] === 'hello'){
     hello();
   }
-  else  if(text.trim() === 'help'){
+  else  if(arrayText[0] === 'help'){
     listOfCommands();
 }
-else  if(text.trim() === 'list'){
+else  if(arrayText[0] === 'list'){
   list();
+
+}
+else  if(arrayText[0] === 'add'){
+  add(arrayText);
 }
   else{
     unknownCommand(text);
@@ -119,11 +123,25 @@ function exit(){
 
 var tasks = ['Testing the software' , 'Little steps' , 'String manipulation',
 'Additional commands',' Refinements','Data modelling','Persistent data'];
+
 function list() {
   for (var i = 0; i < tasks.length; i++) {
     console.log(i + 1 + " - " + tasks[i]);
   }
 }
+
+function add(newTask){
+  if (newTask) {
+  tasks.push(newTask);
+  for (var i = 0; i < tasks.length; i++) {    
+  console.log(i + 1 + " - " +tasks[i]);
+  }
+}else{
+      console.log("Error: Undefined task");
+    }
+  }
+
+     
 
 // The following line starts the application
 startApp("Aymie Chalouhy")
