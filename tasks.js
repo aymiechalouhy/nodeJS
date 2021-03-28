@@ -48,6 +48,9 @@ function onDataReceived(text) {
   else  if(text.trim() === 'help'){
     listOfCommands();
 }
+else  if(text.trim() === 'list'){
+  list();
+}
   else{
     unknownCommand(text);
   }
@@ -112,6 +115,14 @@ function quit(){
 function exit(){
   console.log('Quitting now, goodbye!')
   process.exit();
+}
+
+var tasks = ['Testing the software' , 'Little steps' , 'String manipulation',
+'Additional commands',' Refinements','Data modelling','Persistent data'];
+function list() {
+  for (var i = 0; i < tasks.length; i++) {
+    console.log(i + 1 + " - " + tasks[i]);
+  }
 }
 
 // The following line starts the application
