@@ -55,6 +55,10 @@ else  if(arrayText[0] === 'list'){
 else  if(arrayText[0] === 'add'){
   add(arrayText);
 }
+else  if(arrayText[0] === 'remove'){
+  remove(arrayText);
+}
+
   else{
     unknownCommand(text);
   }
@@ -141,7 +145,13 @@ function add(newTask){
     }
   }
 
+  function remove(arrayText){
+    tasks.pop();
+    tasks.shift();
+    /*task.splice(text - 1, 1);*/
+  }
      
+    
 
 // The following line starts the application
 startApp("Aymie Chalouhy")
