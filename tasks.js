@@ -10,11 +10,17 @@
  * @returns {void}
  */
 
-var elements = ['quit', 'exit', 'hello', 'help', 'list', 'add', 'remove'];
-var Elts = [{ name: 'quit', done: true }, { name: 'exit', done: true },
- { name: 'hello', done: true },{ name: 'help', done: true }, 
- { name: 'list', done: true }, { name: 'add', done: true }, 
- { name: 'remove', done: true }];
+var elements = ['quit', 'exit', 'hello', 'help', 'list', 'add', 'remove','check','uncheck'];
+var Elts = [{ name: 'quit', done: true }, { name: 'exit', done: true }, { name: 'hello', done: true },
+{ name: 'help', done: true }, { name: 'list', done: true }, { name: 'add', done: true }, { name: 'remove', done: true }];
+var elements = ['quit', 'exit', 'hello', 'help', 'list', 'add', 'remove', 'check', 'uncheck'];
+var fs = require('fs');
+var data = fs.readFileSync('database.json', 'utf-8');
+try {
+  if (data == "") throw "Empty"
+}
+catch { data =' [{ "name": "coffe", "done": true }] '}
+var Elts = JSON.parse(data);
 
 
 
@@ -61,14 +67,17 @@ else  if(arrayText[0] === 'list'){
   list(elements);
   list(Elts);
 }
-else  if(arrayText[0] === 'add'){
+else if (text.trim().split(" ", 1) == 'add') {
   add(elements, text);
+  add(Elts, text);
 }
-else  if(arrayText[0] === 'remove'){
+else if (text.trim().split(" ", 1) == 'remove') {
   remove(elements, text);
+  remove(Elts, text);
 }
-else  if(arrayText[0] === 'edit'){
-  edit(elements,text);
+else if (text.trim().split(" ", 1) == 'edit') {
+  edit(elements, text);
+  edit(Elts, text);
 }
 else if (text.trim() == 'list') {
   list(elements);
@@ -142,7 +151,11 @@ function listOfCommands(){
  *
  * @returns {void}
  */
-function quit(){
+function quit() {
+  var fs = require('fs');
+  var data = JSON.stringify(Elts);
+  fs.writeFileSync('database.json', data);
+  console.log('data saved successfully')
   console.log('Quitting now, goodbye!')
   process.exit();
 }
@@ -161,52 +174,54 @@ function list() {
 }
 
 function add(elements, text) {
-  var task = text.trim().split(" ").pop();
-  if (text.trim().split(" ").length == 1) {
-    console.log('"error" no tasks to add!')
-  } else {
-    elements = elements.push(task);
-    console.log(task + ' has been added to list successfully')
+  function add(Elts, text) {
+    var task = text.trim().split(" ").pop();
+    if (text.trim().split(" ").length == 1) {
+      console.log('"error" no tasks to add!')
+    } else {
+      elements = elements.push(task);
+      Elts = Elts.push({ name: task, done: false });
+      console.log(task + ' has been added to list successfully.')
+    }
   }
 }
 
-  /*function remove(arrayText){
-    tasks.pop();
-    tasks.shift();
-    task.splice(text - 1, 1);
-  }*/
-     
-  var elements = ['quit', 'exit', 'hello', 'help', 'list', 'add'];
-  
+function edit(elements, text) {
+  function edit(Elts, text) {
+    var tasks = text.trim().split(" ");
+    if (tasks.length == 1) {
+      console.log('"error" no task to edit!')
+    } else if (tasks.length == 2) {
+      elements[elements.length - 1] = tasks[1];
+      console.log('the task ' + elements.length + ' change to ' + tasks[1])
+      Elts[Elts.length - 1].name = tasks[1];
+      console.log('the task ' + Elts.length + ' change to ' + tasks[1])
+    } else {
+      elements[tasks[1] - 1] = tasks[2];
+      Elts[tasks[1] - 1].name = tasks[2];
+      console.log('the task ' + tasks[1] + ' change to ' + tasks[2])
+    }
+  }
+}
 
-
-
-  function remove(elements, text) {
+function remove(elements, text) {
+  function remove(Elts, text) {
     var task = text.trim().split(" ").pop();
     if (text.trim().split(" ").length == 1) {
       elements.pop();
       console.log('task ' + elements.length + ' has been removed from list successfully.')
     } else if (task > elements.length) {
-      console.log('this task number is not exist!')
+      Elts.pop();
+      console.log('task ' + Elts.length + ' has been removed from list successfully.')
+    } else if (task > Elts.length) {
+      console.log('this task number is not exist! ')
     } else {
       elements.splice(task - 1, 1);
+      Elts.splice(task - 1, 1);
       console.log('task ' + task + ' has been removed from list successfully.')
     }
   }
-  
-
-  function edit(elements, text) {
-    var tasks = text.trim().split(" ");
-    if (tasks.length == 1) {
-      console.log('"error" no task to edit!')
-    } else if (tasks.length == 2) {
-      elements[elements.length-1] = tasks[1];
-      console.log('the task ' + elements.length + ' change to ' + tasks[1])
-    } else {
-      elements[tasks[1]-1] = tasks[2];
-      console.log('the task ' + tasks[1] + ' change to ' + tasks[2])
-    }
-  }
+}
 
   function list(elements) {
     function list(Elts) {
