@@ -74,6 +74,12 @@ else if (text.trim() == 'list') {
   list(elements);
   list(Elts);
 }
+else if (text.trim().split(" ", 1) == 'check') {
+  check(Elts, text);
+}
+else if (text.trim().split(" ", 1) == 'uncheck') {
+  uncheck(Elts, text);
+}
   else{
     unknownCommand(text);
   }
@@ -214,6 +220,35 @@ function add(elements, text) {
         }
       }
     }
-  
+  }
+}
+function check(Elts, text) {
+  var tasks = text.trim().split(" ");
+  if (tasks.length == 1) {
+    console.log("Error");
+  }
+  else if (tasks[1] > Elts.length) {
+    console.log("Error");
+  }
+  else {
+    Elts[tasks[1] - 1].done = true;
+    console.log('checked successfully')
+  }
+}
+function uncheck(Elts, text) {
+  var tasks = text.trim().split(" ");
+  if (tasks.length == 1) {
+    console.log("Error");
+  }
+  else if (tasks[1] > Elts.length) {
+    console.log("Error");
+  }
+  else {
+    Elts[tasks[1] - 1].done = false;
+    console.log('unchecked successfully')
+  }
+}
+
+
 // The following line starts the application
 startApp("Aymie Chalouhy")
