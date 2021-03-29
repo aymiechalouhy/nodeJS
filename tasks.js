@@ -56,10 +56,10 @@ else  if(arrayText[0] === 'add'){
   add(elements, text);
 }
 else  if(arrayText[0] === 'remove'){
-  remove(arrayText);
+  remove(elements, text);
 }
 else  if(arrayText[0] === 'edit'){
-  remove(elements,text);
+  edit(elements,text);
 }
 
 
@@ -158,16 +158,19 @@ function add(elements, text) {
     task.splice(text - 1, 1);
   }*/
      
-  function remove(arrayText){
-    if (arrayText[1] === undefined){
-      tasks.pop();
-    } else if (arrayText[1]-1 >tasks.length){
-      console.log(" This task number does not exist!")
-    }
-    else {
-      tasks.splice(arrayText[1]-1, 1)
+  function remove(elements, text) {
+    var task = text.trim().split(" ").pop();
+    if (text.trim().split(" ").length == 1) {
+      elements.pop();
+      console.log('task ' + elements.length + ' has been removed from list successfully.')
+    } else if (task > elements.length) {
+      console.log('this task number is not exist!')
+    } else {
+      elements.splice(task - 1, 1);
+      console.log('task ' + task + ' has been removed from list successfully.')
     }
   }
+  
 
   function edit(elements, text) {
     var tasks = text.trim().split(" ");
