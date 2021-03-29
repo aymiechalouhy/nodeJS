@@ -9,6 +9,15 @@
  * @param  {string} name the name of the app
  * @returns {void}
  */
+
+var elements = ['quit', 'exit', 'hello', 'help', 'list', 'add', 'remove'];
+var Elts = [{ name: 'quit', done: true }, { name: 'exit', done: true },
+ { name: 'hello', done: true },{ name: 'help', done: true }, 
+ { name: 'list', done: true }, { name: 'add', done: true }, 
+ { name: 'remove', done: true }];
+
+
+
 function startApp(name){
   process.stdin.resume();
   process.stdin.setEncoding('utf8');
@@ -49,8 +58,8 @@ function onDataReceived(text) {
     listOfCommands();
 }
 else  if(arrayText[0] === 'list'){
-  list();
-
+  list(elements);
+  list(Elts);
 }
 else  if(arrayText[0] === 'add'){
   add(elements, text);
@@ -61,9 +70,10 @@ else  if(arrayText[0] === 'remove'){
 else  if(arrayText[0] === 'edit'){
   edit(elements,text);
 }
-
-
-
+else if (text.trim() == 'list') {
+  list(elements);
+  list(Elts);
+}
   else{
     unknownCommand(text);
   }
@@ -159,6 +169,10 @@ function add(elements, text) {
   }*/
      
   var elements = ['quit', 'exit', 'hello', 'help', 'list', 'add'];
+  
+
+
+
   function remove(elements, text) {
     var task = text.trim().split(" ").pop();
     if (text.trim().split(" ").length == 1) {
@@ -186,7 +200,20 @@ function add(elements, text) {
     }
   }
 
-
-
+  function list(elements) {
+    function list(Elts) {
+      console.log('List of commands :')
+      for (i = 1; i <= elements.length; i++) {
+        console.log(i + '- ' + elements[i - 1] + '.')
+      for (var i = 0; i < Elts.length; i++) {
+        if (Elts[i].done) {
+          console.log("[✓] " + Elts[i].name)
+        }
+        else {
+          console.log("[ ] " + Elts[i].name)
+        }
+      }
+    }
+  
 // The following line starts the application
 startApp("Aymie Chalouhy")
