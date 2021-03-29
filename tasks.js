@@ -132,6 +132,8 @@ function listOfCommands(){
    '5- list: shows you all the tasks\n\n',
    '6- add: permit you to add a new task\n\n',
    '7- remove: remove some tasks from the list\n\n',
+   '8- Check: marked the tasks you did in the list\n\n',
+   '9- Unchek: shows you the tasks you have not Done\n\n',
   );
 }
 
