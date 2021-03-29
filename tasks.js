@@ -53,11 +53,16 @@ else  if(arrayText[0] === 'list'){
 
 }
 else  if(arrayText[0] === 'add'){
-  add(arrayText);
+  add(elements, text);
 }
 else  if(arrayText[0] === 'remove'){
   remove(arrayText);
 }
+else  if(arrayText[0] === 'edit'){
+  remove(elements,text);
+}
+
+
 
   else{
     unknownCommand(text);
@@ -137,16 +142,15 @@ function list() {
   }
 }
 
-function add(newTask){
-  if (newTask) {
-  tasks.push(newTask);
-  for (var i = 0; i < tasks.length; i++) {    
-  console.log(i + 1 + " - " +tasks[i]);
+function add(elements, text) {
+  var task = text.trim().split(" ").pop();
+  if (text.trim().split(" ").length == 1) {
+    console.log('"error" no tasks to add!')
+  } else {
+    elements = elements.push(task);
+    console.log(task + ' has been added to list successfully')
   }
-}else{
-      console.log("Error: Undefined task");
-    }
-  }
+}
 
   /*function remove(arrayText){
     tasks.pop();
@@ -164,6 +168,21 @@ function add(newTask){
       tasks.splice(arrayText[1]-1, 1)
     }
   }
+
+  function edit(elements, text) {
+    var tasks = text.trim().split(" ");
+    if (tasks.length == 1) {
+      console.log('"error" no task to edit!')
+    } else if (tasks.length == 2) {
+      elements[elements.length-1] = tasks[1];
+      console.log('the task ' + elements.length + ' change to ' + tasks[1])
+    } else {
+      elements[tasks[1]-1] = tasks[2];
+      console.log('the task ' + tasks[1] + ' change to ' + tasks[2])
+    }
+  }
+
+
 
 // The following line starts the application
 startApp("Aymie Chalouhy")
