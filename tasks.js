@@ -158,6 +158,7 @@ function add(elements, text) {
     task.splice(text - 1, 1);
   }*/
      
+  var elements = ['quit', 'exit', 'hello', 'help', 'list', 'add'];
   function remove(elements, text) {
     var task = text.trim().split(" ").pop();
     if (text.trim().split(" ").length == 1) {
