@@ -148,13 +148,22 @@ function add(newTask){
     }
   }
 
-  function remove(arrayText){
+  /*function remove(arrayText){
     tasks.pop();
     tasks.shift();
-    /*task.splice(text - 1, 1);*/
-  }
+    task.splice(text - 1, 1);
+  }*/
      
-    
+  function remove(arrayText){
+    if (arrayText[1] === undefined){
+      tasks.pop();
+    } else if (arrayText[1]-1 >tasks.length){
+      console.log(" This task number does not exist!")
+    }
+    else {
+      tasks.splice(arrayText[1]-1, 1)
+    }
+  }
 
 // The following line starts the application
 startApp("Aymie Chalouhy")
